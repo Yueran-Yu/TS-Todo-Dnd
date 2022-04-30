@@ -1,36 +1,37 @@
 import React, {FC, FormEvent, useEffect, useState} from 'react';
 import './App.css';
 import InputField from "./components/InputField";
-import {Todo} from "./components/model";
 import TodoList from './components/TodoList';
 import {DragDropContext, DropResult} from 'react-beautiful-dnd';
+import {useLocalStorage} from "./hooks/useLocalStorage";
 
 
 const App: FC = () => {
 	const [todoContent, setTodoContent] = useState<string>('')
-	const [todos, setTodos] = useState<Todo[]>([])
-	const [completedTodos, setCompletedTodos] = useState<Todo[]>([])
+	const [todos, setTodos] = useLocalStorage("todos", "[]")
+	const [completedTodos, setCompletedTodos] = useLocalStorage("completedTodos", "[]")
 
-	useEffect(() => {
-		setTodos(JSON.parse(localStorage.getItem("todos") || '[]'))
-	}, [])
 
-	useEffect(() => {
-		setCompletedTodos(JSON.parse(localStorage.getItem("completedTodos") || '[]'))
-	}, [])
+	// useEffect(() => {
+	// 	setTodos(JSON.parse(localStorage.getItem("todos") || '[]'))
+	// }, [])
 
-	useEffect(() => {
-		// however. on a page reload, the value in the storage returns to an empty string,
-		// This is happening because we've assigned a default empty string to the state variable, todos.
-		//Hence, react uses the empty value on the initial render
-		// Now, instead of assigning an empty string, we must get the updated state value at every point from the storage and assign it as the default state value.
-		localStorage.setItem("todos", JSON.stringify(todos))
-	}, [todos]);
+	// useEffect(() => {
+	// 	setCompletedTodos(JSON.parse(localStorage.getItem("completedTodos") || '[]'))
+	// }, [])
 
-	useEffect(() => {
-		localStorage.setItem("completedTodos", JSON.stringify(completedTodos))
+	// useEffect(() => {
+	// 	// however. on a page reload, the value in the storage returns to an empty string,
+	// 	// This is happening because we've assigned a default empty string to the state variable, todos.
+	// 	//Hence, react uses the empty value on the initial render
+	// 	// Now, instead of assigning an empty string, we must get the updated state value at every point from the storage and assign it as the default state value.
+	// 	localStorage.setItem("todos", JSON.stringify(todos))
+	// }, [todos]);
 
-	}, [completedTodos])
+	// useEffect(() => {
+	// 	localStorage.setItem("completedTodos", JSON.stringify(completedTodos))
+	//
+	// }, [completedTodos])
 
 	const addTodo = (e: FormEvent<EventTarget>) => {
 		e.preventDefault()

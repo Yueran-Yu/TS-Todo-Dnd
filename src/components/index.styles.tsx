@@ -1,5 +1,4 @@
 import styled, {css} from 'styled-components';
-import {SingleTodoIsDrag, SubTodosProps} from "./model";
 
 export const FormContainer = styled.form`
   display: flex;

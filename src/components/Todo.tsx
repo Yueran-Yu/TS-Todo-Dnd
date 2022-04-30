@@ -7,11 +7,8 @@ import {
 	SingleTodoText,
 	TodoIcons
 } from "./index.styles";
-import {SingleTodoProps, Todo} from "./model";
 import {MdEditNote, MdOutlineDelete, MdCheckCircleOutline} from "react-icons/md";
 import {Draggable} from "react-beautiful-dnd";
-
-
 
 const TodoItem: FC<SingleTodoProps> = ({index, todo, todos, setTodos}) => {
 	const [isEdit, setEdit] = useState<boolean>(false)
@@ -60,7 +57,7 @@ const TodoItem: FC<SingleTodoProps> = ({index, todo, todos, setTodos}) => {
 					<SingleTodoFormContainer
 						className={todo.isDone? 'isDone':''}
 						 isDrag={snapshot.isDragging}
-						onSubmit={(e) => handleSubmit(e, todo.id)}
+						onSubmit={(e:FormEvent) => handleSubmit(e, todo.id)}
 						ref={provided.innerRef}
 						{...provided.draggableProps}
 						{...provided.dragHandleProps}>

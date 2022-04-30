@@ -1,10 +1,7 @@
 import React, {FC} from 'react';
 import {SubTodosRemove, SubTodos, SubTodosHeading, TodosContainer} from './index.styles';
-import {TodosProps} from './model';
 import TodoItem from "./Todo";
 import {Droppable} from "react-beautiful-dnd";
-
-
 
 const TodoList: FC<TodosProps> = ({todos, setTodos, completedTodos, setCompletedTodos}): JSX.Element => {
 	return (
